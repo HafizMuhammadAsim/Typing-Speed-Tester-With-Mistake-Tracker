@@ -1,0 +1,21 @@
+import java.util.*;
+public class TopMistakes {
+    public static void showTopMistakes(HashMap<String,Integer>map) {
+        PriorityQueue<
+                Map.Entry<String,Integer>> pq = new PriorityQueue<>((a,b) -> b.getValue() -a.getValue());pq.addAll(map.entrySet()
+        );
+
+        System.out.println("\nTOP 5 MISTAKES");
+        int count = 0;
+        while(!pq.isEmpty() && count < 5) {
+            Map.Entry<String,Integer> entry = pq.poll();
+            System.out.println(entry.getKey() + " -> " + entry.getValue());
+            count++;
+        }
+
+        if(count == 0) {
+
+            System.out.println("No Mistakes Found");
+        }
+    }
+}

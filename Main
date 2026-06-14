@@ -1,0 +1,75 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        SentenceManager.loadSentences();
+        while (true) {
+            System.out.println("\nTyping Speed Tester");
+            System.out.println("1. Start Typing Test");
+            System.out.println("2. View History");
+            System.out.println("3. View Top Mistakes");
+            System.out.println("4. Undo Last Typed Text");
+            System.out.println("5. View Typing Times");
+            System.out.println("6. Exit");
+
+            System.out.print("Enter Choice: ");
+            int choice = sc.nextInt();
+            sc.nextLine();
+            switch (choice) {
+                case 1:
+
+                    String sentence = SentenceManager.getSentence("Medium");
+                    System.out.println("\nType this sentence:");
+                    System.out.println(sentence);
+
+                    long start = System.currentTimeMillis();
+
+                    String input = sc.nextLine();
+
+                    long end = System.currentTimeMillis();
+
+                    double wpm = WPM.calculate(input, start, end);
+
+                    double accuracy = Accuracy.calculate(sentence, input);
+
+                    TestHistory.saveResult(wpm, accuracy);
+
+                    MistakeTracker.recordMistakes(sentence, input);
+
+                    UndoManager.saveText(input);
+
+                    TypingTimer.saveTime(end - start);
+                    System.out.println("\nRESULT");
+                    System.out.println("WPM: " + wpm);
+                    System.out.println("Accuracy: " + accuracy + "%");
+
+                    break;
+
+                case 2:
+                    TestHistory.showHistory();
+                    break;
+
+                case 3:
+                    TopMistakes.showTopMistakes(MistakeTracker.getData());
+                    break;
+
+                case 4:
+                    UndoManager.undoText();
+                    break;
+
+                case 5:
+                    TypingTimer.showTimes();
+                    break;
+
+                case 6:
+                    System.out.println("Program Ended");
+                    return;
+
+                default:
+                    System.out.println("Invalid Choice");
+            }
+        }
+    }
+}

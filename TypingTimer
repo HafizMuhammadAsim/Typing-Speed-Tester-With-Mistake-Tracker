@@ -1,0 +1,18 @@
+import java.util.LinkedList;
+public class TypingTimer { static LinkedList<Long> times = new LinkedList<>();
+    public static void saveTime(long time) {
+        times.add(time);
+    }
+
+    public static void showTimes() {
+        System.out.println("\nTYPING TIMES");
+
+        if(times.isEmpty()) {
+            System.out.println("No Data Available");
+            return;
+        }
+
+        for(Long t : times) {System.out.println(t + " ms");
+        }
+    }
+}

@@ -1,0 +1,11 @@
+public class SentenceNode {
+
+    String difficulty;
+    String sentence;
+    SentenceNode left;
+    SentenceNode right;
+    public SentenceNode(String difficulty, String sentence) {
+        this.difficulty = difficulty;
+        this.sentence = sentence;
+    }
+}

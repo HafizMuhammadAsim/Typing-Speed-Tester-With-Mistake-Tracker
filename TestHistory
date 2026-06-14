@@ -1,0 +1,28 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class TestHistory {
+    static Queue<String> history = new LinkedList<>();
+
+    public static void saveResult(double wpm, double accuracy) {
+
+        if (history.size() == 5) {
+            history.poll();
+        }
+
+        history.add("WPM: " + String.format("%.2f", wpm) + " | Accuracy: " + String.format("%.2f", accuracy) + "%");
+    }
+
+    public static void showHistory() {
+
+        System.out.println("\n===== TEST HISTORY =====");
+
+        if(history.isEmpty()) {System.out.println("No History Available");
+            return;
+        }
+
+        for(String result : history) {
+            System.out.println(result);
+        }
+    }
+}

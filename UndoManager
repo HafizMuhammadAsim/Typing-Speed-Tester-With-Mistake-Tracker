@@ -1,0 +1,23 @@
+import java.util.Stack;
+
+public class UndoManager {
+
+    static Stack<String> stack = new Stack<>();
+
+    public static void saveText(String text) {
+        stack.push(text);
+    }
+
+    public static void undoText() {
+        if(!stack.isEmpty()) {
+            String removed = stack.pop();
+
+            System.out.println("Removed: "+ removed);
+        }
+
+        else {
+
+            System.out.println("Nothing To Undo");
+        }
+    }
+}

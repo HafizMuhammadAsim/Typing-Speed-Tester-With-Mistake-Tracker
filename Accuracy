@@ -1,0 +1,16 @@
+public class Accuracy {
+
+    public static double calculate(String original,String typed) {
+        String[] o = original.split(" ");
+        String[] t = typed.split(" ");
+        int correct = 0;
+
+        for (int i = 0; i < Math.min(o.length, t.length);
+                i++ ){
+            if (o[i].equals(t[i])
+            ) {correct++;}
+        }
+
+        return (correct * 100.0) / o.length;
+    }
+}

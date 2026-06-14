@@ -1,0 +1,16 @@
+public class SentenceManager {
+    static SentenceBST bst = new SentenceBST();
+
+    public static void loadSentences() {
+
+        bst.insert("Easy", "I love coding");
+
+        bst.insert("Medium", "Data structures are important");
+
+        bst.insert("Hard", "Binary search trees improve searching");
+    }
+
+    public static String getSentence(String level) {
+        return bst.search(level);
+    }
+}

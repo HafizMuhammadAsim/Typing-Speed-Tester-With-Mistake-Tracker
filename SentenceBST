@@ -1,0 +1,42 @@
+public class SentenceBST {
+
+    SentenceNode root;
+
+    public void insert(String difficulty, String sentence) {
+
+        root = insertRec(root, difficulty, sentence);
+    }
+
+    private SentenceNode insertRec(SentenceNode root, String difficulty, String sentence) {
+        if (root == null) {
+            return new SentenceNode(difficulty,sentence);
+        }
+
+        if (difficulty.compareTo(root.difficulty) < 0) {
+            root.left = insertRec(root.left,difficulty,sentence);
+        }
+
+        else {
+            root.right = insertRec(root.right,difficulty,sentence);
+        }
+        return root;
+    }
+
+    public String search(String difficulty) {
+        SentenceNode current = root;
+
+        while (current != null) {
+
+            if (current.difficulty.equals(difficulty)) {
+                return current.sentence;
+            }
+
+            if (difficulty.compareTo(current.difficulty) < 0) {
+                current = current.left;
+            }
+
+            else {current = current.right;}
+        }
+        return "";
+    }
+}

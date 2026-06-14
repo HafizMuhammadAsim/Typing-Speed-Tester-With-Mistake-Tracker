@@ -1,0 +1,35 @@
+import java.util.HashMap;
+
+public class MistakeTracker {
+
+    static HashMap<String,Integer> mistakes = new HashMap<>();
+
+    public static void recordMistakes(String original, String typed) {
+
+        String[] o = original.split(" ");
+
+        String[] t = typed.split(" ");
+
+        for(int i = 0; i < Math.min(o.length, t.length); i++){
+
+            if(!o[i].equals(t[i])) {
+                mistakes.put(o[i], mistakes.getOrDefault(o[i], 0) + 1
+                );
+            }
+        }
+    }
+
+    public static HashMap<String,Integer>
+    getData() {
+        return mistakes;
+    }
+
+    public static void showMistakes() {
+        System.out.println("\nALL MISTAKES");
+
+        for(String word : mistakes.keySet()) {
+            System.out.println(word + " -> " + mistakes.get(word)
+            );
+        }
+    }
+}

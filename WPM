@@ -1,0 +1,7 @@
+public class WPM {
+    public static double calculate(String input, long start, long end) {
+        double minutes = (end - start) / 60000.0;
+        int words = input.split(" ").length;
+        return words / minutes;
+    }
+}
